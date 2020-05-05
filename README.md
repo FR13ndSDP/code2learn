@@ -110,8 +110,11 @@ Note:
 
 <font color= orange size = 4> Solved:</font>
 
+`cat words.txt | xargs -n1 | sort | uniq -c | sort -r | awk '{print $2 " " $1}'`
 
+Use xargs -n1 to split text and set output to 1 column, sort is necessary because uniq can only operate on sorted input(by ascii dict). Use sort -r to reverse sort(by frequency) and use awk to get right format.
 
+`xargs -n1` can be replaced by `tr -s ' ' '\n'`
 ### <font color = blueoran> \#194 Transpose File </font>
 Given a text file `file.txt`, transpose its content.
 
@@ -130,3 +133,15 @@ Output the following:
 > name alice ryan
 > age 21 30
 
+<font color=orange size = 4> Solved:</font>
+
+Firstly, get number of columns:
+`FILE_COL=`head -1 file.txt | awk '{print NF}'``
+then to output each field:
+```bash
+for n in $(seq 1 $FILE_COL)
+do
+	awk -v n=$n '{print $n}' file.txt | xargs echo
+done
+```
+`-v` argument is mysterious:-(, echo can make output in one row.
