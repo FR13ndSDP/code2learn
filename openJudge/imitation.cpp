@@ -24,13 +24,19 @@ public:
     bool stopped_;                  // stop flag
     int power_;                     // total HP
     string color_;                  // which side in game
-    int exist[5] = {0, 0, 0, 0, 0}; // number of exist soldier
+    int exist[5]; // number of exist soldier
     int turn;                       // turn of game
+    int tot;
     Headquater() {}
     Headquater(string color, int power) : color_(color), power_(power)
     {
         stopped_ = 0;
         turn = -1; // in first turn , it will be set to 0, nexr turn ++
+        for (int i=0;i<5;i++)
+        {
+            exist[i] = 0;
+        }
+        tot = 0;
     }
     bool summon(int type); //decide if a soldier is made
     bool summon_pre();     // make soldiers
@@ -109,11 +115,7 @@ bool Headquater::summon(int type)
     {
         exist[type] += 1; // update soldier number
         power_ -= HP[type]; // update headquater power 
-        int tot,i; // total number
-        for (i=0; i<5; i++)
-        {
-            tot += exist[i];
-        }
+        tot++;
         printinfo(color_, type, tot, exist[type]);
         return true;
     }
@@ -152,9 +154,9 @@ bool Headquater::summon_pre()
 
 int main()
 {
-    int T, M;
+    int T,M;
     cin >> T;
-    for (int i=1; i<T+1; i++)
+    for (int i=1; i<=T; i++)
     {   
         game.reset();
         cout << "Case:"<< i<< endl;
@@ -163,7 +165,7 @@ int main()
         BLUE = Headquater("blue", M);
         cin >> HP[4]>>HP[3]>>HP[0]>>HP[1]>>HP[2];
         while (game.time_ < 10000)
-        game.newturn();
+            game.newturn();
     }
     return 0;
 }
