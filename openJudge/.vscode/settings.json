@@ -3,6 +3,8 @@
         "*.C": "cpp",
         "*.H": "cpp",
         "new": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "streambuf": "cpp",
+        "iosfwd": "cpp"
     }
 }
