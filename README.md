@@ -1,5 +1,6 @@
 # code2learn
-## BASH
+
+## BASH--4 bash exercises on Leetcode 
 ### <font color = blueoran> \#193 Valid Phone Numbers </font>
 
 Given a text file `file.txt` that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone numbers.
@@ -20,6 +21,8 @@ Your script should output the following valid phone numbers:
 
 >987-123-4567 
 >(123) 456-7890
+
+---
 
 <font color= orange size = 4> Solved:</font>
 
@@ -53,6 +56,8 @@ Your script should output the tenth line, which is:
 Note:
 1. If the file contains less than 10 lines, what should you output?
 2. There's at least three different solutions. Try to explore all possibilities.
+
+---
 
 <font color= orange size = 4> Solved:</font>
 
@@ -108,6 +113,8 @@ Note:
 1. Don't worry about handling ties, it is guaranteed that each word's frequency count is unique.
 2. Could you write it in one-line using Unix pipes?
 
+---
+
 <font color= orange size = 4> Solved:</font>
 
 `cat words.txt | xargs -n1 | sort | uniq -c | sort -r | awk '{print $2 " " $1}'`
@@ -133,6 +140,8 @@ Output the following:
 > name alice ryan
 > age 21 30
 
+---
+
 <font color=orange size = 4> Solved:</font>
 
 Firstly, get number of columns:
@@ -144,4 +153,7 @@ do
 	awk -v n=$n '{print $n}' file.txt | xargs echo
 done
 ```
-`-v` argument is mysterious:-(, echo can make output in one row.
+`-v` argument is mysterious:-(, maybe it's mean to convert a column pointer to a number, like $3 to 3.
+Echo can make output in one row.
+
+A more easy to understand solution : [CSDN link](https://www.cnblogs.com/grandyang/p/5382166.html)
