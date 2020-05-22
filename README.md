@@ -147,6 +147,7 @@ Output the following:
 Firstly, get number of columns:
 `FILE_COL=`head -1 file.txt | awk '{print NF}'``
 then to output each field:
+
 ```bash
 for n in $(seq 1 $FILE_COL)
 do
@@ -157,3 +158,26 @@ done
 Echo can make output in one row.
 
 A more easy to understand solution : [CSDN link](https://www.cnblogs.com/grandyang/p/5382166.html)
+
+### <font color = blueoran> #上党课时间 </font>
+
+有一个文件`time.txt`包含了上党课信息，计算我一共看了多少小时
+
+```shell
+#!/bin/bash
+
+cat time.txt | sed 's/.*已观看//g' | sed 's/完成.*$//g'> tim2.txt
+min=0 #minitue
+hour=0
+row=$(awk '{print NR}' tim2.txt | tail -n1) #行数
+for i in $(seq 1 ${row})
+do
+    if [ $(awk '{print $2}' tim2.txt|sed -n "$i p") = "分钟" ]; then
+        min=$(($min+$(awk '{print $1}' tim2.txt|sed -n "$i p")));
+    elif [ $(awk '{print $2}' tim2.txt|sed -n "$i p") = "小时" ]; then
+        hour=$(($hour+$(awk '{print $1}' tim2.txt|sed -n "$i p")));
+    fi
+done
+echo "$(($min/60+$hour)) h"
+```
+
