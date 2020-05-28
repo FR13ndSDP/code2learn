@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.C": "cpp",
+        "*.H": "cpp",
+        "iostream": "cpp"
+    }
+}

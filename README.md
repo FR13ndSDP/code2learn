@@ -145,7 +145,7 @@ Output the following:
 <font color=orange size = 4> Solved:</font>
 
 Firstly, get number of columns:
-`FILE_COL=`head -1 file.txt | awk '{print NF}'``
+`FILE_COL=head -1 file.txt | awk '{print NF}'`
 then to output each field:
 
 ```bash
